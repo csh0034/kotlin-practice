@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @WebMvcTest(IndexController::class)
-internal class IndexControllerTest {
+class IndexControllerTest {
 
     @Autowired
     private lateinit var mockMvc: MockMvc
