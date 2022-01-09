@@ -6,8 +6,9 @@ class Function {
         return if (a > b) a else b
     }
 
+    // expression syntax (식 구문)
     fun sum(a: Int, b: Int) = a + b
 
     // Elvis operator
-    fun getLen(str: String?): Int = str?.length ?: 0
+    fun getLen(str: String?) = str?.length ?: 0
 }
