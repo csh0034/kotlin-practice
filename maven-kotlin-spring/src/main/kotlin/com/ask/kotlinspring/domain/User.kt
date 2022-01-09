@@ -42,8 +42,8 @@ class User(
     override fun toString(): String {
         return "User(id='$id', loginId='$loginId', name='$name', password='$password')"
     }
-}
 
-enum class Role {
-    ROLE_USER, ROLE_ADMIN
+    enum class Role {
+        ROLE_USER, ROLE_ADMIN
+    }
 }

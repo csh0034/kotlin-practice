@@ -1,7 +1,7 @@
 package com.ask.kotlinspring
 
-import com.ask.kotlinspring.domain.Role
 import com.ask.kotlinspring.domain.User
+import com.ask.kotlinspring.domain.User.*
 import com.ask.kotlinspring.repository.UserRepository
 import org.slf4j.LoggerFactory
 import org.springframework.boot.ApplicationArguments
