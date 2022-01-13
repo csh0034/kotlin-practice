@@ -1,5 +1,6 @@
 package com.ask.kotlinspring.web
 
+import com.ask.kotlinspring.config.TestConfig
 import com.ask.kotlinspring.service.SampleService
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.mock.mockito.SpyBean
+import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
@@ -16,6 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @WebMvcTest(IndexController::class)
+@Import(TestConfig::class)
 class IndexControllerTest {
 
     @Autowired
@@ -33,7 +36,6 @@ class IndexControllerTest {
         result.andDo(print())
             .andExpect(status().isOk)
             .andExpect(content().string("index"))
-
     }
 
     @Test

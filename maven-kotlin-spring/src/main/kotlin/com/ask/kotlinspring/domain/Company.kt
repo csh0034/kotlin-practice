@@ -5,35 +5,22 @@ import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 
 @Entity
-@Table(name = "user")
-class User(
+@Table(name = "company")
+class Company(
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "user_id")
+    @Column(name = "compnay_id")
     var id: String? = null,
 
     @Column(nullable = false, length = 30)
-    var loginId: String,
-
-    @Column(nullable = false, length = 30)
     var name: String,
-
-    @Column(nullable = false, length = 100)
-    var password: String,
-
-    @Column(nullable = false, length = 10)
-    @Enumerated(EnumType.STRING)
-    var role: Role,
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    var company: Company?
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
-        other as User
+        other as Company
 
         return id == other.id
     }
@@ -43,10 +30,6 @@ class User(
     }
 
     override fun toString(): String {
-        return "User(id='$id', loginId='$loginId', name='$name', password='$password')"
-    }
-
-    enum class Role {
-        ROLE_USER, ROLE_ADMIN
+        return "Company(id=$id, name='$name')"
     }
 }
