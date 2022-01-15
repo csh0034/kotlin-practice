@@ -43,7 +43,10 @@
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib-jdk8</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>com.querydsl</groupId>
+      <artifactId>querydsl-jpa</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -97,6 +100,28 @@
             <option>all-open:annotation=javax.persistence.MappedSuperclass</option>
           </pluginOptions>
         </configuration>
+        <executions>
+          <execution>
+            <id>kapt</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>kapt</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>src/main/kotlin</sourceDir>
+              </sourceDirs>
+              <annotationProcessorPaths>
+                <annotationProcessorPath>
+                  <groupId>com.querydsl</groupId>
+                  <artifactId>querydsl-apt</artifactId>
+                  <version>${querydsl.version}</version>
+                  <classifier>jpa</classifier>
+                </annotationProcessorPath>
+              </annotationProcessorPaths>
+            </configuration>
+          </execution>
+        </executions>
         <dependencies>
           <dependency>
             <groupId>org.jetbrains.kotlin</groupId>

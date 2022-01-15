@@ -5,13 +5,13 @@ import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 
 @Entity
-@Table(name = "company")
+@Table(name = "mt_company")
 class Company(
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "compnay_id")
+    @Column(name = "company_id")
     var id: String? = null,
 
     @Column(nullable = false, length = 30)

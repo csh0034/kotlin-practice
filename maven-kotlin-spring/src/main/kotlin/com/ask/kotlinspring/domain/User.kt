@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 
 @Entity
-@Table(name = "user")
+@Table(name = "mt_user")
 class User(
 
     @Id
@@ -27,8 +27,9 @@ class User(
     @Enumerated(EnumType.STRING)
     var role: Role,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    var company: Company?
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "company_id")
+    var company: Company
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
