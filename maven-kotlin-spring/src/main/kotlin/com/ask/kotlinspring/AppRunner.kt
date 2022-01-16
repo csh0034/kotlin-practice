@@ -15,9 +15,9 @@ import javax.persistence.EntityManager
 
 @Component
 class AppRunner(
-    private var companyRepository: CompanyRepository,
-    private var userRepository: UserRepository,
-    private var entityManager: EntityManager
+    private val companyRepository: CompanyRepository,
+    private val userRepository: UserRepository,
+    private val entityManager: EntityManager
 ) : ApplicationRunner {
 
     private val log = LoggerFactory.getLogger(this.javaClass)
