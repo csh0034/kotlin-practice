@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     companion object {
-        const val LOGIN_SUCCESS_URL: String = "/index"
+        private const val LOGIN_SUCCESS_URL: String = "/index"
     }
 
     override fun configure(web: WebSecurity) {
