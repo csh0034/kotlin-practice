@@ -87,7 +87,35 @@ internal class CoroutinesTest {
   @Nested
   inner class Suspend {
 
+    @Test
+    fun `각각 3초씩 6초가 소요됨`() {
+      runBlocking {
+        val answer1 = answer1()
+        val answer2 = answer2()
 
+        println("$answer1, $answer2")
+      }
+    }
+
+    @Test
+    fun `async await 사용으로 3초가 소요됨`() {
+      runBlocking {
+        val answer1 = async { answer1() }
+        val answer2 = async { answer2() }
+
+        println("${answer1.await()}, ${answer2.await()}")
+      }
+    }
+
+    private suspend fun answer1(): String {
+      delay(3000)
+      return "Answer 1"
+    }
+
+    private suspend fun answer2(): String {
+      delay(3000)
+      return "Answer 2"
+    }
 
   }
 
