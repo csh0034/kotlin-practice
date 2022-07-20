@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface EndpointRepository : JpaRepository<Endpoint, String> {
 
-  suspend fun findBySerial(serial: String): Endpoint?
+  fun findBySerial(serial: String): Endpoint?
 
 }

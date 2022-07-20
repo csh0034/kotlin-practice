@@ -2,6 +2,9 @@ package com.ask.webfluxcoroutines.service
 
 import com.ask.webfluxcoroutines.entity.Endpoint
 import com.ask.webfluxcoroutines.repository.EndpointRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
@@ -14,7 +17,15 @@ class EndpointService(
 
   suspend fun getEndpointBySerial(serial: String): Endpoint? {
     log.info("getEndpointBySerial: $serial")
-    return endpointRepository.findBySerial(serial)
+    return withContext(Dispatchers.IO) {
+      endpointRepository.findBySerial(serial)
+    }
+  }
+
+  suspend fun getTimestampWithSleep(delay: Long): Long {
+    log.info("invoke... delay: $delay")
+    delay(delay)
+    return System.currentTimeMillis()
   }
 
 }
