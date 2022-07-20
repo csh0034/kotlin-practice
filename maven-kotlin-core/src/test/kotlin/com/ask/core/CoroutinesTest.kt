@@ -108,11 +108,13 @@ internal class CoroutinesTest {
     }
 
     private suspend fun answer1(): String {
+      println("answer1: ${Thread.currentThread().name}")
       delay(3000)
       return "Answer 1"
     }
 
     private suspend fun answer2(): String {
+      println("answer2: ${Thread.currentThread().name}")
       delay(3000)
       return "Answer 2"
     }
