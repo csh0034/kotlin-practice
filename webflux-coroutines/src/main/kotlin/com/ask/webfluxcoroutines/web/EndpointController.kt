@@ -43,6 +43,12 @@ class EndpointController(
     return ResponseEntity.ok(responseVO)
   }
 
+  @GetMapping("/endpoints/{serial}/update")
+  suspend fun update(@PathVariable("serial") serial: String): String {
+    endpointService.update(serial)
+    return "update..."
+  }
+
 
   data class ResponseVO(val code: Int, val timestamp1: Long, val timestamp2: Long, val data: Any)
 

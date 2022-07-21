@@ -28,4 +28,19 @@ class EndpointService(
     return System.currentTimeMillis()
   }
 
+  /**
+   * @Transactional 이 동작하지않아 변경감지도 동작안함
+   */
+//  @Transactional
+  suspend fun update(serial: String) {
+    log.info("update... ${Thread.currentThread().name}")
+
+    withContext(Dispatchers.IO) {
+      log.info("update... in Dispatchers.IO ${Thread.currentThread().name}")
+
+      val endpoint = endpointRepository.findBySerial(serial)!!
+      endpoint.name = System.currentTimeMillis().toString()
+    }
+  }
+
 }
