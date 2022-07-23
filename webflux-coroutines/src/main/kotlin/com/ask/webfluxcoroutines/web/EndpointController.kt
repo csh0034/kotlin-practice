@@ -1,17 +1,14 @@
 package com.ask.webfluxcoroutines.web
 
-import com.ask.webfluxcoroutines.config.getSecurityContext
 import com.ask.webfluxcoroutines.service.EndpointService
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.util.StopWatch
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
-import java.security.Principal
 
 @RestController
 class EndpointController(
@@ -19,15 +16,6 @@ class EndpointController(
 ) {
 
   private val log = LoggerFactory.getLogger(javaClass)
-
-  @GetMapping("/security")
-  suspend fun security(principal: Principal): String {
-    val token = principal as UsernamePasswordAuthenticationToken
-
-    log.info("token: $token")
-    log.info("securityContext: ${getSecurityContext()}")
-    return "ok"
-  }
 
   @GetMapping("/endpoints/by/{serial}")
   suspend fun getEndpointBySerial(@PathVariable("serial") serial: String): ResponseEntity<ResponseVO> {

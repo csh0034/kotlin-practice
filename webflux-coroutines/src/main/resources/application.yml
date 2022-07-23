@@ -13,8 +13,8 @@ spring:
 
   security:
     user:
-      name: user
-      password: user
+      name: user01
+      password: user01
       roles: USER
 
 logging:
