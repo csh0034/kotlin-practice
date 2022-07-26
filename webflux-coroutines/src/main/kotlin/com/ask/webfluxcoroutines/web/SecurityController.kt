@@ -1,7 +1,7 @@
 package com.ask.webfluxcoroutines.web
 
 import com.ask.webfluxcoroutines.config.getAuthentication
-import org.slf4j.LoggerFactory
+import com.ask.webfluxcoroutines.util.logger
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.User
@@ -12,7 +12,7 @@ import java.security.Principal
 @RestController
 class SecurityController {
 
-  private val log = LoggerFactory.getLogger(javaClass)
+  private val log = logger()
 
   @GetMapping("/security")
   suspend fun security(@AuthenticationPrincipal user: User, principal: Principal): Any {

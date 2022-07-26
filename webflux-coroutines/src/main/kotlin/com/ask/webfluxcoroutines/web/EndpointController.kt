@@ -1,9 +1,9 @@
 package com.ask.webfluxcoroutines.web
 
 import com.ask.webfluxcoroutines.service.EndpointService
+import com.ask.webfluxcoroutines.util.logger
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.util.StopWatch
 import org.springframework.web.bind.annotation.GetMapping
@@ -15,7 +15,7 @@ class EndpointController(
   private val endpointService: EndpointService
 ) {
 
-  private val log = LoggerFactory.getLogger(javaClass)
+  private val log = logger()
 
   @GetMapping("/endpoints/by/{serial}")
   suspend fun getEndpointBySerial(@PathVariable("serial") serial: String): ResponseEntity<ResponseVO> {
