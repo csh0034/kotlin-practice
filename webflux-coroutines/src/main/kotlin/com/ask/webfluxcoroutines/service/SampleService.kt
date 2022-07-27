@@ -1,6 +1,8 @@
 package com.ask.webfluxcoroutines.service
 
-import com.ask.webfluxcoroutines.aspect.CoroutineLogging
+import com.ask.webfluxcoroutines.aspect.CoroutineCaching
+import com.ask.webfluxcoroutines.entity.Endpoint
+import com.ask.webfluxcoroutines.repository.EndpointRepository
 import com.ask.webfluxcoroutines.util.logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -8,21 +10,25 @@ import kotlinx.coroutines.withContext
 import org.springframework.stereotype.Service
 
 @Service
-class SampleService {
+class SampleService(
+  private val endpointRepository: EndpointRepository
+) {
 
   private val log = logger()
 
-  @CoroutineLogging
-  suspend fun getTimestamp(): Long {
-    val timestamp = System.currentTimeMillis()
+  @CoroutineCaching("endpoint...")
+//  @CoroutineLogging
+  suspend fun getEndpoint(): Endpoint? {
+    return withContext(Dispatchers.IO) {
+      log.info("delay 1...")
+      delay(1000)
 
-    withContext(Dispatchers.IO) {
-      log.info("before delay")
-      delay(3000)
-      log.info("after delay")
+      log.info("delay 2...")
+      delay(1000)
+
+      log.info("findBySerial...")
+      endpointRepository.findBySerial("aaa")
     }
-
-    return timestamp
   }
 
 }
