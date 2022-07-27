@@ -18,7 +18,7 @@ class CoroutineCachingAspect {
   private val log = logger()
 
   @Around("@annotation(CoroutineCaching) && args(.., kotlin.coroutines.Continuation)")
-  fun logResult(pjp: ProceedingJoinPoint): Any? {
+  fun cache(pjp: ProceedingJoinPoint): Any? {
     log.info("CoroutineCachingAspect....")
 
     val signature = pjp.signature as MethodSignature
