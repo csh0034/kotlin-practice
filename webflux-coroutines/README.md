@@ -31,6 +31,14 @@ suspend fun update(serial: String) {
 
 따라서 변경감지 기능을 사용할수 없으며 명시적으로 `JpaRepository.save()` 를 호출해야한다.
 
+### Coroutine Cache 적용
+
+suspend function 의 경우 리턴타입이 `COROUTINE_SUSPENDED` 이므로 리턴타입 대한 캐싱이 안됨
+
+따라서 별도 `startCoroutineUninterceptedOrReturn` 과 `suspendCoroutineUninterceptedOrReturn` 로 처리해야한다.
+
+- [GitHub Issue, Spring AOP is not compatible with Kotlin Coroutines](https://github.com/spring-projects/spring-framework/issues/22462)
+
 ## 참조
 
 - [Docs, Spring Coroutines](https://docs.spring.io/spring-framework/docs/current/reference/html/languages.html#coroutines)
