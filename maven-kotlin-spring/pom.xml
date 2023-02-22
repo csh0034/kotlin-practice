@@ -15,7 +15,7 @@
   <name>maven-kotlin-spring</name>
   <description>maven-kotlin-spring</description>
   <properties>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <kotlin.version>1.6.10</kotlin.version>
   </properties>
   <dependencies>
@@ -67,10 +67,34 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-core</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.ninja-squad</groupId>
+      <artifactId>springmockk</artifactId>
+      <version>4.0.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.kotest</groupId>
+      <artifactId>kotest-runner-junit5</artifactId>
+      <version>5.5.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.kotest.extensions</groupId>
+      <artifactId>kotest-extensions-spring</artifactId>
+      <version>1.1.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
