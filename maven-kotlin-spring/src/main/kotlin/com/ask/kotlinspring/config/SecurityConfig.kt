@@ -13,40 +13,40 @@ import org.springframework.security.crypto.password.PasswordEncoder
 @Configuration
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
-    companion object {
-        private const val LOGIN_SUCCESS_URL: String = "/index"
-    }
+  companion object {
+    private const val LOGIN_SUCCESS_URL: String = "/index"
+  }
 
-    override fun configure(web: WebSecurity) {
-        web.ignoring()
-            .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
-            .requestMatchers(PathRequest.toH2Console())
-    }
+  override fun configure(web: WebSecurity) {
+    web.ignoring()
+      .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
+      .antMatchers("/h2-console/**")
+  }
 
-    override fun configure(http: HttpSecurity) {
-        http {
-            headers {
-                frameOptions {
-                    sameOrigin = true
-                }
-            }
-            csrf {
-                disable()
-            }
-            httpBasic {
-                disable()
-            }
-            authorizeRequests {
-                authorize("/admin/**", hasRole("ADMIN"))
-                authorize(anyRequest, permitAll)
-            }
-            formLogin {
-                defaultSuccessUrl(LOGIN_SUCCESS_URL, false)
-            }
+  override fun configure(http: HttpSecurity) {
+    http {
+      headers {
+        frameOptions {
+          sameOrigin = true
         }
+      }
+      csrf {
+        disable()
+      }
+      httpBasic {
+        disable()
+      }
+      authorizeRequests {
+        authorize("/admin/**", hasRole("ADMIN"))
+        authorize(anyRequest, permitAll)
+      }
+      formLogin {
+        defaultSuccessUrl(LOGIN_SUCCESS_URL, false)
+      }
     }
+  }
 
-    @Bean
-    fun passwordEncoder(): PasswordEncoder =
-        PasswordEncoderFactories.createDelegatingPasswordEncoder()
+  @Bean
+  fun passwordEncoder(): PasswordEncoder =
+    PasswordEncoderFactories.createDelegatingPasswordEncoder()
 }

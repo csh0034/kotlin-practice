@@ -1,13 +1,10 @@
 package com.ask.kotlinspring.web
 
-import com.ask.kotlinspring.config.TestConfig
 import com.ask.kotlinspring.service.SampleService
+import com.ask.support.IntegrationTest
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
@@ -16,15 +13,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-@WebMvcTest(IndexController::class)
-@Import(TestConfig::class)
-class IndexControllerTest {
-
-  @Autowired
-  private lateinit var mockMvc: MockMvc
-
-  @MockkBean
-  private lateinit var sampleService: SampleService
+@IntegrationTest
+class IndexControllerTest(
+  private val mockMvc: MockMvc,
+  @MockkBean private val sampleService: SampleService
+) {
 
   @Test
   fun index() {
