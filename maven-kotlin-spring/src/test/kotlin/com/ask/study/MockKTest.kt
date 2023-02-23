@@ -1,39 +1,15 @@
 package com.ask.study
 
 import com.ask.study.Bar.bar
-import com.ask.support.UnitTest
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.matchers.shouldBe
 import io.mockk.*
-import io.mockk.impl.annotations.MockK
 import org.junit.jupiter.api.Test
 
-class Foo {
-  fun String.foo(value: String) {}
-
-  fun foo(value: String) {
-    throw RuntimeException()
-  }
-}
-
-object Bar {
-  fun String.bar(value: String) {}
-}
-
-fun String.baz(value: String) {}
-
-fun Foo.baz(value: String) {
-  println("baz")
-  foo(value)
-}
-
-@UnitTest
-internal class MockKTest(
-  @MockK private val foo: Foo
-) {
-
+internal class MockKTest {
   @Test
   fun `다른 클래스에서 선언된 확장 함수를 스텁할 수 있다`() {
+    val foo = mockk<Foo>()
     with(foo) {
       every { "first".foo(any()) } answers {
         firstArg<String>() shouldBe "first"
@@ -74,4 +50,23 @@ internal class MockKTest(
     shouldNotThrowAny { foo.foo("first") }
     verify { foo.foo(any()) }
   }
+}
+
+class Foo {
+  fun String.foo(value: String) {}
+
+  fun foo(value: String) {
+    throw RuntimeException()
+  }
+}
+
+object Bar {
+  fun String.bar(value: String) {}
+}
+
+fun String.baz(value: String) {}
+
+fun Foo.baz(value: String) {
+  println("baz")
+  foo(value)
 }
