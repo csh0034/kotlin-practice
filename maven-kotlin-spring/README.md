@@ -21,6 +21,10 @@ extensions(SpringTestExtension(SpringTestLifecycleMode.Root))
 override fun extensions() = listOf(SpringExtension)
 ```
 
+### 생성자 Bean 주입 처리
+
+`SpringAutowireConstructorExtension`
+
 [Nested Test spec 에서의 context 생명주기 및 트랜잭션](https://kth990303.tistory.com/374)
 
 ## 참조
