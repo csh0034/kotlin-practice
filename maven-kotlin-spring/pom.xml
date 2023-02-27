@@ -95,6 +95,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>io.kotest</groupId>
+      <artifactId>kotest-framework-datatest-jvm</artifactId>
+      <version>5.5.5</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>io.kotest.extensions</groupId>
       <artifactId>kotest-extensions-spring</artifactId>
       <version>1.1.2</version>
