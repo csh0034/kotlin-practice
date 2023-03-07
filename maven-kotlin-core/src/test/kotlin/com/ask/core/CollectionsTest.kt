@@ -11,10 +11,19 @@ internal class CollectionsTest {
 
   @Test
   fun shuffled() {
-    val shuffled = (1..9).shuffled().toList()
+    val shuffled = (1..9).shuffled()
     shuffled.subList(0, 3).toList().forEach { println(it) }
     shuffled.subList(0, 3).toList().forEach { println(it) }
     shuffled.subList(0, 3).toList().forEach { println(it) }
+  }
+
+  @Test
+  fun lotto() {
+    val numbers = (1..45)
+
+    repeat(10) {
+      println(numbers.shuffled().take(6).sorted())
+    }
   }
 
 }
