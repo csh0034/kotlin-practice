@@ -31,20 +31,20 @@ internal class CollectionsTest {
     val list = listOf(
       SortResponse(false, 0, "a"),
       SortResponse(true, 1, "b"),
-      SortResponse(false, 2, "c"),
+      SortResponse(false, null, "c"),
       SortResponse(true, 4, "d"),
     )
 
     val sortedList = list.sortedWith(
-      compareBy({ !it.enabled }, { it.enabledTimestamp })
-    )
+      compareBy({ it.enabled }, { it.enabledTimestamp })
+    ).reversed()
 
     sortedList.forEach { println(it) }
   }
 
   data class SortResponse(
     val enabled: Boolean,
-    val enabledTimestamp: Long,
+    val enabledTimestamp: Long?,
     val title: String,
   )
 
